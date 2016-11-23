@@ -30,10 +30,9 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %> |
 <%= link_to restaurants_path do %>
-  <i class="fa fa-arrow-left"></i>
-  <%= image_tag "logo.png" %>
+  <i class="fa fa-arrow-left btn btn-primary">back</i>
 <% end %>
 
 <% content_for(:after_js) do %>
