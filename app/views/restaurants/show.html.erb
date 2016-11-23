@@ -1,2 +1,45 @@
 <h1>Restaurants#show</h1>
 <p>Find me in app/views/restaurants/show.html.erb</p>
+<% content_for(:title) do %>
+  <%= @restaurant.name %> is on Yelp!
+<% end %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @restaurant.phone_number %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @restaurant.category %>
+</p>
+
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li><%= review.content %> <%= review.rating %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to restaurants_path do %>
+  <i class="fa fa-arrow-left"></i>
+  <%= image_tag "logo.png" %>
+<% end %>
+
+<% content_for(:after_js) do %>
+<script>
+  $(document).ready(function(){
+    alert("<%= @restaurant.name %>");
+  })
+</script>
+<% end %>
