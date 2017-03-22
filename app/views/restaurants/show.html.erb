@@ -1,9 +1,7 @@
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
 <% content_for(:title) do %>
   <%= @restaurant.name %> is on Yelp!
 <% end %>
-
+<div class="col-sm-4 col-sm-offset-4">
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
@@ -24,16 +22,26 @@
   <%= @restaurant.category %>
 </p>
 
+  <strong>Reviews:</strong>
+
 <ul>
   <% @restaurant.reviews.each do |review| %>
-    <li><%= review.content %> <%= review.rating %></li>
+    <li><%= review.content %> - <%= review.rating %> stars</li>
   <% end %>
 </ul>
-
+    <h1>Review for <%= @restaurant.name %></h1>
+   <%= simple_form_for [@restaurant, @review] do |f| %>
+   <%= f.error_notification %>
+       <%= f.input :content, as: :text, placeholder: "Write your review"%>
+       <%= f.input :rating, as: :integer %>
+       <%= f.submit "Submit your review", class: "btn btn-primary" %>
+   <% end %>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %> |
 <%= link_to restaurants_path do %>
   <i class="fa fa-arrow-left btn btn-primary">back</i>
 <% end %>
+
+</div>
 
 <% content_for(:after_js) do %>
 <script>
